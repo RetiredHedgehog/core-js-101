@@ -140,6 +140,7 @@ function doRectanglesOverlap(rect1, rect2) {
   }
 
   const r1 = new Coords(rect1);
+
   const r2 = new Coords(rect2);
 
   return (

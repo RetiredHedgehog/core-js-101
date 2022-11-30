@@ -112,6 +112,7 @@ function retry(func, attempts) {
     do {
       try {
         answ = func();
+
         break;
       } catch (err) {
         attemptsT -= 1;
@@ -148,17 +149,15 @@ function retry(func, attempts) {
  */
 function logger(func, logFunc) {
   return (...args) => {
-    const argsStr = JSON.stringify(args).slice(1, -1);
-
-    const log = `${func.name}(${argsStr})`;
+    const log = `${func.name}(${JSON.stringify(args).slice(1, -1)})`;
 
     logFunc(`${log} starts`);
 
-    const res = func(...args);
+    const answ = func(...args);
 
     logFunc(`${log} ends`);
 
-    return res;
+    return answ;
   };
 }
 
@@ -199,10 +198,12 @@ function partialUsingArguments(fn, ...args1) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-  let i = startFrom - 1;
+  let counter = startFrom - 1;
+
   return () => {
-    i += 1;
-    return i;
+    counter += 1;
+
+    return counter;
   };
 }
 

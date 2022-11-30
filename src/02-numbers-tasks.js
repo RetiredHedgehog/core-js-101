@@ -115,6 +115,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
   const length = (x, y) => Math.sqrt(x ** 2 + y ** 2);
 
   const lengthA = length(x1, y1);
+
   const lengthB = length(x2, y2);
 
   return Math.acos(dotProduct / (lengthA * lengthB));

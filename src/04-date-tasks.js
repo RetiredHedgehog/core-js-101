@@ -79,8 +79,11 @@ function timeSpanToString(startDate, endDate) {
   const diff = endDate - startDate;
 
   const hours = Math.floor(diff / (1000 * 3600));
+
   const minutes = Math.floor((diff - hours * (1000 * 3600)) / (1000 * 60));
+
   const seconds = Math.floor((diff - hours * (1000 * 3600) - minutes * (1000 * 60)) / 1000);
+
   const mSeconds = Math.floor(
     diff - hours * (1000 * 3600) - minutes * (1000 * 60) - seconds * 1000,
   );
@@ -109,6 +112,7 @@ function timeSpanToString(startDate, endDate) {
  */
 function angleBetweenClockHands(date) {
   const hours = date.getUTCHours() % 12;
+
   const minutes = date.getUTCMinutes();
 
   let answ = Math.abs(0.5 * (60 * hours - 11 * minutes));
