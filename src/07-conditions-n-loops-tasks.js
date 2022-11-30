@@ -468,8 +468,25 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const n = m1.length;
+  const p = m2[0].length;
+
+  const m3 = Array.from(Array(n), () => new Array(p));
+
+  for (let i = 0; i < n; i += 1) {
+    for (let j = 0; j < p; j += 1) {
+      let sum = 0;
+
+      for (let k = 0; k < m2.length; k += 1) {
+        sum += m1[i][k] * m2[k][j];
+      }
+
+      m3[i][j] = sum;
+    }
+  }
+
+  return m3;
 }
 
 
@@ -503,8 +520,52 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  function checkEquality(arr) {
+    return arr.every((e) => e !== undefined && e === arr[0]);
+  }
+
+  const diagonalPrimary = [];
+
+  const diagonalSecondary = [];
+
+  for (let i = 0; i < position.length; i += 1) {
+    const rows = [];
+
+    const columns = [];
+
+    for (let j = 0; j < position.length; j += 1) {
+      rows.push(position[i][j]);
+
+      columns.push(position[j][i]);
+
+      if (i === j) {
+        diagonalPrimary.push(position[i][j]);
+      }
+
+      if ((i + j) === (position.length - 1)) {
+        diagonalSecondary.push(position[i][j]);
+      }
+    }
+
+    if (checkEquality(rows)) {
+      return rows[0];
+    }
+
+    if (checkEquality(columns)) {
+      return columns[0];
+    }
+  }
+
+  if (checkEquality(diagonalPrimary)) {
+    return diagonalPrimary[0];
+  }
+
+  if (checkEquality(diagonalSecondary)) {
+    return diagonalSecondary[0];
+  }
+
+  return undefined;
 }
 
 
